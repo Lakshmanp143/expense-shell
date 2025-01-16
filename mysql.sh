@@ -14,7 +14,7 @@ lOGS_FILE_NAME="$LOGS_FOLDER/$LOGS_FILE-$TIMESTAMP.log"
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "ERROR:: $B You must be root user to execute this script $N "
+        echo -e "ERROR:: $B You must be root user to execute this script $N "
         exit 1
     fi
 }
