@@ -52,7 +52,7 @@ then
     then
         echo -e "mysql password not setup, $B setting up ..WAIT!!! $N "
 
-        mysql_secure_installtion --set-root-pass ExpenseApp@1  &>>$lOGS_FILE_NAME
+        mysql_secure_installation --set-root-pass ExpenseApp@1  &>>$lOGS_FILE_NAME
         VALIDATE $? "Setting root password"
     else   
         echo -e "Mysql password $Y ..ALREADY SETUP ..SKIPPING $N "
