@@ -7,7 +7,7 @@ B="\e[34m"
 N="\e[0m"
 USERID=$(id -u)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
-LOGS_FOLDER="/var/log/expense1-logs"
+LOGS_FOLDER="/var/log/shell-script.logs"
 LOGS_FILE=$(echo $0 | cut -d "." -f1)
 lOGS_FILE_NAME="$LOGS_FOLDER/$LOGS_FILE-$TIMESTAMP.log"
 
@@ -20,11 +20,11 @@ CHECK_ROOT(){
         exit 1
     fi
 }
-
+mkdir -p $LOGS_FOLDER
 echo "Script started executing at:: $TIMESTAMP" &>>$lOGS_FILE_NAME
 
 
-sudo mkdir -p $LOGS_FOLDER
+
 VALIDATE(){
     if [ $1 -ne 0 ]
     then
