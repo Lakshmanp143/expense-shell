@@ -20,10 +20,10 @@ CHECK_ROOT(){
         exit 1
     fi
 }
-mkdir -p $LOGS_FOLDER
+sudo mkdir -p $LOGS_FOLDER
 echo "Script started executing at:: $TIMESTAMP" &>>$lOGS_FILE_NAME
 
-CHECK_ROOT
+
  
 VALIDATE(){
     if [ $1 -ne 0 ]
