@@ -38,7 +38,7 @@ if [ $? -ne 0 ]
 then    
     echo -e "Mysql-server not installed, $Y INSTALLING ..WAIT $N "
 
-    dnf install mysql-server &>>$lOGS_FILE_NAME
+    dnf install mysql-server -y &>>$lOGS_FILE_NAME
     VALIDATE $?  "installing mysql-server"
 
     systemctl start mysqld  &>>$lOGS_FILE_NAME
