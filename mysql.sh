@@ -33,30 +33,23 @@ VALIDATE(){
     fi
 }
 
-dnf list installed | grep mysql-server  &>>$lOGS_FILE_NAME
+
+dnf install mysql-server -y &>>$lOGS_FILE_NAME
+VALIDATE $?  "installing mysql-server"
+
+systemctl start mysqld  &>>$lOGS_FILE_NAME
+VALIDATE $? "Enabling mysql-server"
+
+systemctl start mysqld  &>>$lOGS_FILE_NAME
+VALIDATE $? "Starting mysql-server"
+
+mysql -h mysql.lakshman.site -u root -pExpenseApp@1 -e 'show databases;' &>>$lOGS_FILE_NAME
 if [ $? -ne 0 ]
-then    
-    echo -e "Mysql-server not installed, $Y INSTALLING ..WAIT $N "
+then
+    echo -e "mysql password not setup, $B setting up ..WAIT!!! $N " &>>$lOGS_FILE_NAME
 
-    dnf install mysql-server -y &>>$lOGS_FILE_NAME
-    VALIDATE $?  "installing mysql-server"
-
-    systemctl start mysqld  &>>$lOGS_FILE_NAME
-    VALIDATE $? "Enabling mysql-server"
-
-    systemctl start mysqld  &>>$lOGS_FILE_NAME
-    VALIDATE $? "Starting mysql-server"
-
-    mysql -h mysql.lakshman.site -u root -pExpenseApp@1 -e 'show databases;' &>>$lOGS_FILE_NAME
-    if [ $? -ne 0 ]
-    then
-        echo -e "mysql password not setup, $B setting up ..WAIT!!! $N "
-
-        mysql_secure_installation --set-root-pass ExpenseApp@1  
-        VALIDATE $? "Setting root password"
-    else   
-        echo -e "Mysql password $Y ..ALREADY SETUP ..SKIPPING $N "
-    fi
-else    
-    echo -e "Mysql-server is $Y ALREADY INSTALLED ..SKIPPING $N "
+    mysql_secure_installtion --set-root-pass ExpenseApp@1  
+    VALIDATE $? "Setting root password"
+ else   
+    echo -e "Mysql password $Y ..ALREADY SETUP ..SKIPPING $N "
 fi
