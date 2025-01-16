@@ -48,7 +48,7 @@ if [ $? -ne 0 ]
 then
     echo -e "mysql password not setup, $B setting up ..WAIT!!! $N " &>>$lOGS_FILE_NAME
 
-    mysql_secure_installtion --set-root-pass ExpenseApp@1  
+    mysql_secure_installation --set-root-pass ExpenseApp@1  
     VALIDATE $? "Setting root password"
  else   
     echo -e "Mysql password $Y ..ALREADY SETUP ..SKIPPING $N "
