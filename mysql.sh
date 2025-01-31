@@ -44,7 +44,7 @@ systemctl start mysqld  &>>$lOGS_FILE_NAME
 VALIDATE $? "Starting mysql-server"
 
 mysql -h mysql.lakshman.site -u root -pExpenseApp@1 -e 'show databases;' &>>$lOGS_FILE_NAME
-if [$? -ne 0]
+if [ $? -ne 0 ]
 then
     echo -e "mysql password not setup, $B setting up ..WAIT!!! $N " &>>$lOGS_FILE_NAME
 
